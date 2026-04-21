@@ -68,7 +68,7 @@ const KEY_FEATURES = [
 
 export default function Home() {
   return (
-    <main className="bg-white overflow-x-hidden">
+    <main className="bg-white">
 
       {/* ══════════════════════════════════════════
           SECTION 1 — Smart Alerts
@@ -76,7 +76,7 @@ export default function Home() {
       <section className="relative max-w-6xl mx-auto px-4 sm:px-8 pt-16 sm:pt-28 pb-12 sm:pb-[250px] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
         {/* Left image */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center aos aos-left">
           <Image
             src="/im/Group 24.png"
             alt="Ambulance alert app"
@@ -90,6 +90,7 @@ export default function Home() {
 
         {/* Right text */}
         <div className="flex flex-col gap-5">
+          <div className="aos aos-down aos-d1">
           <SectionBadge
             icon="/im/icons8-ambulance-96 copy 1 (1).png"
             label="Smart"
@@ -97,9 +98,10 @@ export default function Home() {
             highlightColor="#FF0000"
             textShadow="2px 2px 6px rgba(0,0,0,0.25)"
           />
+          </div>
 
           <h2
-            className="text-gray-900 leading-tight uppercase font-normal"
+            className="text-gray-900 leading-tight uppercase font-normal aos aos-up aos-d2"
             style={{
               fontFamily: "var(--font-atkinson)",
               fontSize: "clamp(28px, 5vw, 50px)",
@@ -109,7 +111,7 @@ export default function Home() {
             For Smarter Cities
           </h2>
 
-          <p className="text-black leading-relaxed font-normal"
+          <p className="text-black leading-relaxed font-normal aos aos-up aos-d3"
             style={{ fontFamily: "var(--font-source-sans)", fontSize: "clamp(15px, 2vw, 18px)" }}>
             Our Ambulance Alert System is designed to bridge the critical gap between
             emergency vehicles and public awareness. Using real-time GPS tracking and
@@ -117,7 +119,7 @@ export default function Home() {
             proximity—helping reduce delays caused by traffic congestion.
           </p>
 
-          <p className="text-black leading-relaxed font-normal"
+          <p className="text-black leading-relaxed font-normal aos aos-up aos-d4"
             style={{ fontFamily: "var(--font-source-sans)", fontSize: "clamp(15px, 2vw, 18px)" }}>
             Every second matters in emergencies. With our system, communities become
             active participants in saving lives.
@@ -142,6 +144,7 @@ export default function Home() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 pt-4 pb-16 sm:pb-28 grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-start">
           <div className="space-y-14">
             {/* Badge */}
+            <div className="aos aos-down pb-8">
             <SectionBadge
               icon="/how it works 1 (1).png"
               label="How It"
@@ -150,15 +153,26 @@ export default function Home() {
               textColor="#ffffff"
               highlightColor="#FFA500"
             />
+            </div>
 
             {/* Steps — zigzag on desktop, vertical list on mobile */}
-            <div className="hidden lg:block relative mt-16" style={{ height: "560px" }}>
+            <div className="hidden lg:block relative mt-16 aos aos-up aos-d2" style={{ height: "560px" }}>
               <svg
                 className="absolute inset-0 w-full h-full pointer-events-none"
                 viewBox="0 0 900 560"
                 preserveAspectRatio="none"
               >
+                <defs>
+                  <style>{`
+                    @keyframes moveDash {
+                      from { stroke-dashoffset: 0; }
+                      to { stroke-dashoffset: -40; }
+                    }
+                    .moving-path { animation: moveDash 1.2s linear infinite; }
+                  `}</style>
+                </defs>
                 <path
+                  className="moving-path"
                   d="M 40 110 C 170 20, 300 35, 380 95 C 470 170, 560 150, 620 170 C 700 190, 720 250, 660 300 C 620 340, 560 380, 480 430 C 360 480, 240 510, 140 540"
                   fill="none"
                   stroke="#FFA500"
@@ -188,13 +202,14 @@ export default function Home() {
             </div>
 
             {/* Mobile zigzag steps */}
-            <div className="lg:hidden relative mt-8" style={{ height: "720px" }}>
+            <div className="lg:hidden relative mt-8 aos aos-up aos-d2" style={{ height: "720px" }}>
               <svg
                 className="absolute inset-0 w-full h-full pointer-events-none"
                 viewBox="0 0 340 720"
                 preserveAspectRatio="none"
               >
                 <path
+                  className="moving-path"
                   d="M 60 60 C 80 100, 200 110, 260 150 C 310 180, 310 230, 260 270 C 210 310, 80 320, 60 370 C 40 410, 180 430, 260 470 C 320 500, 320 540, 260 570 C 200 600, 80 610, 60 660"
                   fill="none"
                   stroke="#FFA500"
@@ -225,7 +240,7 @@ export default function Home() {
             </div>
 
             {/* Key Features */}
-            <div className="space-y-10">
+            <div className="space-y-10 aos aos-left aos-d3">
               <SectionBadge
                 icon="/ownership 1.png"
                 label="Key"
@@ -236,8 +251,8 @@ export default function Home() {
               />
 
               <div className="mt-10 flex flex-col gap-8">
-                {KEY_FEATURES.map((f) => (
-                  <div key={f.title} className="flex items-start gap-6">
+                {KEY_FEATURES.map((f, i) => (
+                  <div key={f.title} className={`flex items-start gap-6 aos aos-up aos-d${i + 1}`}>
                     <div
                       className="shrink-0 w-14 h-14 rounded-full flex items-center justify-center"
                       style={{
@@ -267,7 +282,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hidden lg:block relative w-full h-full">
+          <div className="hidden lg:block relative w-full h-full aos aos-right">
             <Image
               src="/Group 31.png"
               alt="Good Citizen app screenshot"
@@ -285,7 +300,7 @@ export default function Home() {
       ══════════════════════════════════════════ */}
       <section className="relative max-w-6xl mx-auto px-4 sm:px-8 pt-16 sm:pt-28 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center">
-          <div className="relative">
+          <div className="relative aos aos-left">
             <div className="absolute -top-6 left-6 w-16 h-16 rounded-2xl bg-emerald-700 shadow-lg" />
             <div className="relative overflow-hidden rounded-[40px]">
               <Image
@@ -298,7 +313,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-8 aos aos-right">
             <SectionBadge
               icon="/how it works 1 (1).png"
               label="Why It"
@@ -324,8 +339,8 @@ export default function Home() {
                 { icon: "/icon 2/Reduced emergency delays.png", title: "Reduced emergency delays" },
                 { icon: "/icon 2/Increased survival rates.png", title: "Increased survival rates" },
                 { icon: "/icon 2/Smarter, safer cities.png", title: "Smarter, safer cities" },
-              ].map((item) => (
-                <div key={item.title} className="relative rounded-[24px] border border-black bg-white px-5 pt-8 pb-5">
+              ].map((item, i) => (
+                <div key={item.title} className={`relative rounded-[24px] border border-black bg-white px-5 pt-8 pb-5 aos aos-scale aos-d${i + 1}`}>
                   <div className="absolute left-5 w-[50px] h-[45px] flex items-center justify-center" style={{ top: "1px" }}>
                     <Image src={item.icon} alt={item.title} width={50} height={45} className="object-contain" />
                   </div>
@@ -374,7 +389,7 @@ export default function Home() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="max-w-2xl mx-auto flex flex-col gap-4">
+        <div className="max-w-2xl mx-auto flex flex-col gap-4 aos aos-up">
           {[
             { q: "DO I NEED TO KEEP GPS ALWAYS ON?", a: "No. You only need location permission, the app alerts you automatically." },
             { q: "WILL I GET ALERTS ANYWHERE ?", a: "Alerts are sent based on your real-time GPS location within the ambulance's proximity zone." },
@@ -445,7 +460,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8" style={{ position: "relative", zIndex: 10 }}>
 
           {/* Contact card */}
-          <div className="bg-gray-100 rounded-[24px] flex flex-col items-center py-10 px-6 sm:px-8 gap-4">
+          <div className="bg-gray-100 rounded-[24px] flex flex-col items-center py-10 px-6 sm:px-8 gap-4 aos aos-left aos-d2">
             <div className="flex items-center justify-center">
               <Image src="/icons.png" alt="Contact" width={56} height={56} className="object-contain" />
             </div>
@@ -475,7 +490,7 @@ export default function Home() {
           </div>
 
           {/* Get Started card */}
-          <div className="bg-gray-100 rounded-[24px] flex flex-col items-center py-10 px-6 sm:px-8 gap-4">
+          <div className="bg-gray-100 rounded-[24px] flex flex-col items-center py-10 px-6 sm:px-8 gap-4 aos aos-right aos-d3">
             <div className="flex items-center justify-center">
               <Image src="/Group 38.png" alt="Download" width={56} height={56} className="object-contain" />
             </div>
@@ -502,7 +517,7 @@ export default function Home() {
         </div>
 
         {/* Footer bar */}
-        <div className="w-full px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10 sm:mt-[-68px]">
+        <div className="w-full px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10 sm:mt-[-67px]">
           <p style={{ fontFamily: "var(--font-source-sans)", fontSize: "13px", color: "#333", textAlign: "center" }}>
             © 2025 Good Citizen App — Making Roads Safer Together.
           </p>

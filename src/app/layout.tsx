@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import AosInit from "@/components/AosInit";
 
 const atkinson = Atkinson_Hyperlegible({
   variable: "--font-atkinson",
@@ -29,7 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${atkinson.variable} ${sourceSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AosInit />
+        {children}
+      </body>
     </html>
   );
 }
